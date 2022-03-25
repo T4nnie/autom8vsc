@@ -162,16 +162,28 @@ public class CaTest {
         coll.forEach(e->e.sePresenter());   
     }
 
+
     @Test
     public void testErreurAge(){
         Eleve el = null;
+
+        //boolean pour tracer qu'on passe bien par les catch
+        boolean a = false ;
+
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)12);
-        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage());}
+        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage()); a = true;}
+
+        assertTrue("un eleve trop vieux a bien déclenché une exception", a);
+
+        a = false ;
 
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)4);
-        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage());}
+        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage()); a = true;}
+
+        assertTrue("un eleve trop jeune a bien déclenché une exception", a);
+;
 
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)8);
