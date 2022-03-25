@@ -20,7 +20,6 @@ public final class Ecole {
             case 8 : e.setNiveau_classe(NiveauClasse.CE2);break;
             case 9 : e.setNiveau_classe(NiveauClasse.CM1);break;
             case 10: e.setNiveau_classe(NiveauClasse.CM2);break;
-            default : System.out.println("*** L'Elève n'a pas entre 6 et 10 ans ! ***");
         }
 
     }

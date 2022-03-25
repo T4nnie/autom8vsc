@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class CaTest {
+
+    private static Logger log = LoggerFactory.getLogger(CaTest.class);
 
     /*
     *** Test des GET & SET de l'absence d'un élève ***
@@ -23,7 +28,7 @@ public class CaTest {
         el.setAbsent(true);
 
         //on affiche la valeur dans la console
-        System.out.println("la valeur de l'absence : "+el.getAbsent());
+        log.info("la valeur de l'absence : "+el.getAbsent());
 
         //On vérifie que la variable absent est bien "True"
         assertTrue(el.getAbsent());
@@ -125,13 +130,13 @@ public class CaTest {
     public void testMiseANiveau(){
         Eleve el = new Eleve("Chirac","Jacques", agePossible.SEPT);
         el.setNiveau_classe(NiveauClasse.CE2);
-        System.out.println(el.getPrenom() +" est en " + el.getNiveauClasse());
+        log.trace(el.getPrenom() +" est en " + el.getNiveauClasse());
 
         assertEquals(el.getNiveauClasse(), NiveauClasse.CE2);
 
         el.setNiveau_classe(NiveauClasse.CM1);
 
-        System.out.println(el.getPrenom() +" est en " + el.getNiveauClasse());
+        log.trace(el.getPrenom() +" est en " + el.getNiveauClasse());
 
         assertEquals(el.getNiveauClasse(), NiveauClasse.CM1);
     }
@@ -141,7 +146,7 @@ public class CaTest {
         Eleve el = new Eleve("Tapis","Bernard",agePossible.NEUF);
         Ecole.assigneClasse(el);
 
-        System.out.println(el.getNiveauClasse());
+        log.info(el.getNiveauClasse().toString());
 
         assertEquals(el.getNiveauClasse(), NiveauClasse.CM1);
     }
@@ -172,7 +177,7 @@ public class CaTest {
 
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)12);
-        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage()); a = true;}
+        }catch(ExceptionAgeNonValide e){log.warn(e.getMessage()); a = true;}
 
         assertTrue("un eleve trop vieux a bien déclenché une exception", a);
 
@@ -180,14 +185,14 @@ public class CaTest {
 
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)4);
-        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage()); a = true;}
+        }catch(ExceptionAgeNonValide e){log.warn(e.getMessage()); a = true;}
 
         assertTrue("un eleve trop jeune a bien déclenché une exception", a);
 ;
 
         try{
             el = new Eleve("Mozart", "Wolfgang", (byte)8);
-        }catch(ExceptionAgeNonValide e){System.out.println(e.getMessage());}
+        }catch(ExceptionAgeNonValide e){log.error(e.getMessage());}
 
         assertFalse(el.equals(null));
     }
