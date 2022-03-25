@@ -28,7 +28,7 @@ public class CaTest {
         el.setAbsent(true);
 
         //on affiche la valeur dans la console
-        log.info("la valeur de l'absence : "+el.getAbsent());
+        log.trace("la valeur de l'absence : "+el.getAbsent());
 
         //On vérifie que la variable absent est bien "True"
         assertTrue(el.getAbsent());
@@ -146,7 +146,7 @@ public class CaTest {
         Eleve el = new Eleve("Tapis","Bernard",agePossible.NEUF);
         Ecole.assigneClasse(el);
 
-        log.info(el.getNiveauClasse().toString());
+        log.trace(el.getNiveauClasse().toString());
 
         assertEquals(el.getNiveauClasse(), NiveauClasse.CM1);
     }
